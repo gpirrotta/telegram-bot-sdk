@@ -803,7 +803,7 @@ class Api
     /**
      * Check update object for a command and process.
      *
-     * @param Update $update
+     * @param $update
      */
     protected function processCommand(Update $update)
     {
@@ -811,6 +811,11 @@ class Api
 
         if ($message !== null && $message->has('text')) {
             $this->getCommandBus()->handler($message->getText(), $update);
+        }
+        else if ($message->has('location')) {
+            $location = $message->getLocation();
+            $text = "". " ". $location->getLatitude().  " " . $location->getLongitude();
+            $this->getCommandBus()->handler($text, $update);
         }
     }
 
