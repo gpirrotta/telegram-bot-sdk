@@ -152,7 +152,7 @@ class CommandBus
             throw new \InvalidArgumentException('Message is empty, Cannot parse for command');
         }
 
-        preg_match('/^\/([^\s@]+)@?(\S+)?\s?(.*)$/', $text, $matches);
+        preg_match('/^\/?([^\s@]+)@?(\S+)?\s?(.*)$/', $text, $matches);
 
         return $matches;
     }
